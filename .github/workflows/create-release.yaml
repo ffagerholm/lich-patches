@@ -1,0 +1,72 @@
+name: Build all patches and create a release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup ARM GCC
+        uses: carlosperate/arm-none-eabi-gcc-action@v1
+        with:
+          release: "10.3-2021.10"
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential git curl pkg-config make cmake jq
+
+      - name: Clone OwlProgram
+        run: |
+          git clone --recurse-submodules https://github.com/RebelTechnology/OwlProgram.git
+          cd OwlProgram
+          git checkout v22.2.0
+
+      - name: Build all patches
+        working-directory: OwlProgram
+        run: |
+          mkdir -p ../artifacts
+
+          # Build
+          make libs || true
+          make clean
+
+          # Loop over patch folders in repo root
+          for dir in $(ls -d ../*/ | sed 's|../||' | grep -vE '^(OwlProgram/|artifacts/|\.github)$'); do
+            patch=$(basename "$dir")
+            echo "Building $patch"
+
+            # Clean previous patch sources
+            rm -rf PatchSource/*
+            
+            # Copy all source files into PatchSource
+            cp -a ../$patch/. ./PatchSource
+
+            # Clear build folder and build patch binary
+            make clean
+            make PATCHNAME=$patch patch
+
+            # Copy outputs
+            mv ./Build/patch.bin ../artifacts/$patch.bin
+          done
+
+      - name: Create archive
+        run: |
+          tar -czf patches.tar.gz -C artifacts .
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          files: patches.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
