@@ -4,12 +4,14 @@
 /**
 AUTHOR:
     (c) 2025 Fredrik Fagerholm
-    Based on TemplatePatch.hpp by mars
+    Derived from TemplatePatch.hpp by the OWL team, licensed under GPL v3.
     https://github.com/pingdynasty/OwlPatches/blob/master/TemplatePatch.hpp
+
 LICENSE:
     This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License version 2, as
-    published by the Free Software Foundation.
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
