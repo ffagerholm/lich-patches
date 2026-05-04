@@ -4,7 +4,9 @@
 /**
 
 AUTHOR:
-    (c) 2026 Fredrik Fagerholm
+    Copyright (c) 2025 Andrew Ionascu
+    Copyright (c) 2026 Fredrik Fagerholm
+
     Derived from wavetable_synth.cpp by Andrew Ionascu
     https://github.com/adion12/DaisyWavetable
 LICENSE:
@@ -28,7 +30,7 @@ DESCRIPTION:
         PARAMETER_C controls the volume of the inharmonic frequencies.
         PARAMETER_D controls the LFO frequency.
         Button A and GATE 1 regenerates wavetable 1.
-        Button B and GATE 2 regenerates wavetable 2. 
+        Button B and GATE 2 regenerates wavetable 2.
 */
 
 #include "Patch.h"
