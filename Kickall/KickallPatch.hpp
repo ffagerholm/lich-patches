@@ -21,11 +21,11 @@ LICENSE:
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 DESCRIPTION:
-    A port of Befaco Kickall module functionality, based on the
+    A port of the Befaco Kickall module functionality, based on the
     VCV rack version of the module.
 
-    The patch consists of a sine wave generator with a controllable waveshape,
-    a "decay" envelope controlling the volume and pitch.
+    The patch consists of a sine-wave generator with a controllable waveform,
+    and a "decay" envelope that controls the volume and pitch.
 
     Parameters on the Befaco Lich module:
         PARAMETER_A "Tuning" controls the frequency/tuning of the oscillator.
