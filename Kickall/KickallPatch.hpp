@@ -129,9 +129,9 @@ private:
     static constexpr float FREQ_A0 = 10.f; // 27.5f;
     static constexpr float FREQ_B2 = 123.471f;
     static constexpr float minVolumeDecay = 0.075f;
-    static constexpr float maxVolumeDecay = 16.f;
+    static constexpr float maxVolumeDecay = 10.f;
     static constexpr float minPitchDecay = 0.0075f;
-    static constexpr float maxPitchDecay = 5.f;
+    static constexpr float maxPitchDecay = 2.f;
     static constexpr float bendRange = 10000;
     bool buttonstateA = false;
     bool buttonstateB = false;
