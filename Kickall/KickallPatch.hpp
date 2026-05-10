@@ -3,7 +3,7 @@
 
 /**
 AUTHOR:
-    (c) 2025 Fredrik Fagerholm
+    (c) 2024 Befaco
     (c) 2025 Fredrik Fagerholm
     Derived from Kickall.cpp by the Befaco, licensed under GPL v3.
     https://github.com/VCVRack/Befaco/blob/v2/src/Kickall.cpp
@@ -33,9 +33,9 @@ DESCRIPTION:
             The base shape of the waveform is a sine wave. Turning the shape
             know clockwise changes the wave into more square-shaped waveform,
             adding more harmonics and a harsher sound.
-        PARAMETER_C "Decay" controls the length of the decay envelope.
-        PARAMETER_D "Bend" controls how much the envelope affects the pitch or
-            the volume, based on the state of button B.
+        PARAMETER_C "Decay" controls the length of the decay envelope for either the
+            pitch or the volume, based on the state of button B.
+        PARAMETER_D "Bend" controls how much the envelope affects the pitch.
         Button A and GATE 1 Triggers the envelope.
         Button B and GATE 2 Changes wheter the "Bend" control affects the
             amount of volume or pitch modulation.
