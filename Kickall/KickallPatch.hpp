@@ -29,16 +29,18 @@ DESCRIPTION:
 
     Parameters on the Befaco Lich module:
         PARAMETER_A "Tuning" controls the frequency/tuning of the oscillator.
-        PARAMETER_B "Shape" contorls the shape of the oscillator waveform.
+        PARAMETER_B "Shape" controls the shape of the oscillator waveform.
             The base shape of the waveform is a sine wave. Turning the shape
-            know clockwise changes the wave into more square-shaped waveform,
+            know clockwise changes the wave into a more square-shaped waveform,
             adding more harmonics and a harsher sound.
         PARAMETER_C "Decay" controls the length of the decay envelope for either the
-            pitch or the volume, based on the state of button B.
+            pitch or the volume based on the state of button B.
         PARAMETER_D "Bend" controls how much the envelope affects the pitch.
-        Button A and GATE 1 Triggers the envelope.
-        Button B and GATE 2 Changes wheter the "Bend" control affects the
-            amount of volume or pitch modulation.
+        Button A and GATE 1 Trigger the envelope.
+        Button B and GATE 2 Selects whether the "Decay" control affects the
+            length of the volume or pitch envelope. If the button is off,
+            the "Decay" knob controls the pitch envelope length. If the button
+            is on, the "Decay" knob controls the volume envelope length.
 */
 
 #include "Patch.h"
@@ -108,10 +110,10 @@ public:
                 engaged = true;
             }
             // Or if the input crossed the target
-            else if (hasCrossed(targetValue, lastInput, input))
-            {
-                engaged = true;
-            }
+            // else if (hasCrossed(targetValue, lastInput, input))
+            // {
+            //     engaged = true;
+            // }
         }
         lastInput = input;
         // Only update after engagement
@@ -127,9 +129,9 @@ private:
     static constexpr float FREQ_A0 = 10.f; // 27.5f;
     static constexpr float FREQ_B2 = 123.471f;
     static constexpr float minVolumeDecay = 0.075f;
-    static constexpr float maxVolumeDecay = 4.f;
+    static constexpr float maxVolumeDecay = 16.f;
     static constexpr float minPitchDecay = 0.0075f;
-    static constexpr float maxPitchDecay = 1.f;
+    static constexpr float maxPitchDecay = 5.f;
     static constexpr float bendRange = 10000;
     bool buttonstateA = false;
     bool buttonstateB = false;
@@ -219,7 +221,7 @@ public:
             clamp(
                 volumeDecay,
                 0.01,
-                10.0));
+                maxVolumeDecay));
 
         // Calculate oscillator waveform shape
         const float shape = getParameterValue(PARAMETER_B) * 0.99f;
